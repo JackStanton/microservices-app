@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="generated.dstu.ru"
+                  targetNamespace="generated.dstu.ru">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="generated.dstu.ru">
+            <xs:element name="userRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="login" type="xs:string" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="userResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="user" type="tns:user" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:complexType name="user" >
+                <xs:attribute name="id" type="xs:long"/>
+                <xs:attribute name="login" type="xs:string"/>
+                <xs:attribute name="password" type="xs:string"/>
+            </xs:complexType>
+
+            <xs:complexType name="nameSpace">
+                <xs:attribute name="nameSpace" type="xs:string" fixed="generated.dstu.ru">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <xs:property fixedAttributeAsConstantProperty="true"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:complexType>
+
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getUserResponse">
+        <wsdl:part element="tns:userResponse" name="getUserResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getUserRequest">
+        <wsdl:part element="tns:userRequest" name="getUserRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="UsersPort">
+        <wsdl:operation name="getUser">
+            <wsdl:input message="tns:getUserRequest" name="getUserRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:getUserResponse" name="getUserResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="UsersPortSoap" type="tns:UsersPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="getUser">
+            <soap:operation soapAction="" />
+            <wsdl:input name="getUserRequest">
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output name="getUserResponse">
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="UsersPortService">
+        <wsdl:port binding="tns:UsersPortSoap" name="UsersPortSoap">
+            <soap:address location="http://localhost:8080/ws" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

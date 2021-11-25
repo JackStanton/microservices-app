@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="ru"
+>
+<head>
+    <title>Пользователи</title>
+</head>
+<body>
+<div th:replace="~{includes/links.html :: div}"></div>
+<div class="navbar">
+    <nav th:replace="~{includes/navbar.html :: nav}"></nav>
+</div>
+<div class="container-fluid well text-center">
+    <div class="panel-body">
+        <h1>Таблица "Пользователи"</h1>
+    </div>
+</div>
+
+<div class="container-fluid text-center">
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Логин </th>
+            <th scope="col">Пароль</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr scope="row" th:each="tempUser : ${users}">
+            <th class="align-middle" th:text="${tempUser.id}"></th>
+            <th class="align-middle" th:text="${tempUser.login}"></th>
+            <th class="align-middle" th:text="${tempUser.password}"></th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
