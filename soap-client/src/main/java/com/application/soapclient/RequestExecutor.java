@@ -11,6 +11,7 @@ public class RequestExecutor extends WebServiceGatewaySupport {
     public UserResponse getUser(User user) {
         UserRequest request = new UserRequest();
         request.setUser(user);
+
         return (UserResponse) getWebServiceTemplate().marshalSendAndReceive("http://localhost:8080/ws", request);
     }
 }

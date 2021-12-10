@@ -1,0 +1,69 @@
+<xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        jaxb:version="2.1"
+        xmlns:annox="http://annox.dev.java.net"
+        jaxb:extensionBindingPrefixes="annox"
+        xmlns:tns="generated.dstu.ru"
+        targetNamespace="generated.dstu.ru">
+
+
+    <xsd:element name="userRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="user" type="tns:user" />
+                <xsd:element name="getAllUsers" type="xsd:boolean" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="userResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="users" type="tns:user" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="user" >
+        <xsd:annotation>
+            <xsd:appinfo>
+                <annox:annotate>@javax.persistence.Entity</annox:annotate>
+                <annox:annotate>@javax.persistence.Table</annox:annotate>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:attribute name="id" type="xsd:long">
+            <xsd:annotation>
+                <xsd:appinfo>
+                    <annox:annotate>@javax.persistence.Id</annox:annotate>
+                    <annox:annotate>@javax.persistence.GeneratedValue(strategy = GenerationType.IDENTITY)</annox:annotate>
+                    <annox:annotate>@javax.persistence.Column</annox:annotate>
+                </xsd:appinfo>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="login" type="xsd:string">
+            <xsd:annotation>
+                <xsd:appinfo>
+                    <annox:annotate>@javax.persistence.Column</annox:annotate>
+                </xsd:appinfo>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="password" type="xsd:string">
+            <xsd:annotation>
+                <xsd:appinfo>
+                    <annox:annotate>@javax.persistence.Column</annox:annotate>
+                </xsd:appinfo>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="nameSpace">
+        <xsd:attribute name="nameSpace" type="xsd:string" fixed="generated.dstu.ru">
+            <xsd:annotation>
+                <xsd:appinfo>
+                    <xsd:property fixedAttributeAsConstantProperty="true"/>
+                </xsd:appinfo>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+</xsd:schema>
