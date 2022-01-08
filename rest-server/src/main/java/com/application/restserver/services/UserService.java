@@ -15,6 +15,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public Optional<UserEntity> getByLogin(String login){
+        return userRepository.findByLogin(login);
+    }
+
     public Iterable<UserEntity> getUsers(){
         return userRepository.findAll();
     }
@@ -25,7 +29,7 @@ public class UserService {
 
     public UserEntity saveOrUpdate(UserEntity entity){
         userRepository.save(entity);
-        return userRepository.findByLogin(entity.getLogin());
+        return userRepository.findByLogin(entity.getLogin()).get();
     }
 
     public void deleteById(Long id){

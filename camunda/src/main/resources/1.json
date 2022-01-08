@@ -1,0 +1,13 @@
+{
+  "variables": {
+    "login": {
+      "value": "someValue",
+      "type": "String"
+    },
+    "password": {
+      "value": "someValue",
+      "type": "String"
+    }
+  },
+  "businessKey": "12345"
+}

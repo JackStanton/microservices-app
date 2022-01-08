@@ -16,9 +16,9 @@ public class UserService {
 
     public List<User> findUser(User user){
         List<User> users = userRepo.findAllByLogin(user.getLogin());
-        if(users.size() == 0){
-            saveUser(user);
-        }
+//        if(users.size() == 0){
+//            saveUser(user);
+//        }
         return users;
     }
 

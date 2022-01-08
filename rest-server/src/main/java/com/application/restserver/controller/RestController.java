@@ -31,6 +31,11 @@ public class RestController {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
 
+    @GetMapping({"getByLogin/{login}"})
+    public ResponseEntity<Optional<UserEntity>> getUser(@PathVariable String login) {
+        return new ResponseEntity<>(userService.getByLogin(login), HttpStatus.OK);
+    }
+
 
     @PostMapping({"/save"})
     public ResponseEntity<UserEntity> saveUser(@RequestBody UserEntity userEntity) {
